@@ -197,6 +197,10 @@ vim.o.hlsearch = false
 
 -- Make line numbers default
 vim.wo.number = true
+vim.wo.relativenumber = true
+vim.wo.cursorline = true
+vim.wo.cursorcolumn = true
+vim.opt.colorcolumn = "80,100"
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -250,6 +254,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
+vim.keymap.set('n', '<leader>p', ':Explore<CR>', { desc = 'Open Explorer' })
+vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save File' })
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
