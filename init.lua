@@ -190,6 +190,8 @@ require('lazy').setup({
     },
   },
 
+  'weilbith/nvim-code-action-menu',
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -401,7 +403,7 @@ local on_attach = function(_, bufnr)
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-  nmap('<leader><enter>', vim.lsp.buf.code_action, '[C]ode [A]ction')
+  nmap('<leader><enter>', ':CodeActionMenu<CR>', '[C]ode [A]ction Menu')
 
   nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
