@@ -176,6 +176,20 @@ require('lazy').setup({
     end,
   },
 
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
+    },
+    opts = {
+      filesystem = {
+        follow_current_file = true,
+      },
+    },
+  },
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -260,6 +274,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.keymap.set('n', '<leader>p', ':Explore<CR>', { desc = 'Open Explorer' })
+vim.keymap.set('n', '<leader>o', ':Neotree<CR>', { desc = 'Open Neotree' })
 vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save File' })
 
 -- [[ Configure Telescope ]]
