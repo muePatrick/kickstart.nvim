@@ -185,6 +185,10 @@ require('lazy').setup({
     },
     opts = {
       filesystem = {
+        filtered_items = {
+          hide_dotfiles = false,
+          hide_gitignored = false,
+        },
         follow_current_file = true,
       },
     },
