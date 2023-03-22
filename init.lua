@@ -446,6 +446,8 @@ local servers = {
   -- rust_analyzer = {},
   tsserver = {},
   eslint = {},
+  cssls = {},
+  cssmodules_ls = {},
 
   lua_ls = {
     Lua = {
