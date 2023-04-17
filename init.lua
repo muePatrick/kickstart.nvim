@@ -196,6 +196,14 @@ require('lazy').setup({
 
   'weilbith/nvim-code-action-menu',
 
+  {'romgrk/barbar.nvim',
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    init = function() vim.g.barbar_auto_setup = true end,
+    opts = {
+    },
+    version = '^1.0.0', -- optional: only update when a new 1.x version is released
+  },
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
