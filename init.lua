@@ -459,6 +459,13 @@ local servers = {
 
 vim.keymap.set('n', '<leader>.', ':EslintFixAll<CR>', { desc = 'Eslint: Fix All' })
 
+vim.keymap.set('n', '<tab>', '<C-W>w', { desc = 'Next Window' })
+vim.keymap.set('n', '<S-tab>', '<C-W>W', { desc = 'Previous Window' })
+-- FIXME
+-- vim.keymap.set('n', '<C-tab>', ':bnext<CR>', { desc = 'Next Buffer' })
+-- vim.keymap.set('n', '<C-S-tab>', ':bprevious<CR>', { desc = 'Previous Buffer' })
+vim.keymap.set('n', '<leader><tab>', ':b#<CR>', { desc = 'Toggle last used buffers' })
+
 -- Setup neovim lua configuration
 require('neodev').setup()
 
