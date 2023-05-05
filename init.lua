@@ -280,7 +280,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.keymap.set('n', '<leader>p', ':Explore<CR>', { desc = 'Open Explorer' })
-vim.keymap.set('n', '<leader>o', ':Neotree<CR>', { desc = 'Open Neotree' })
+vim.keymap.set('n', '<leader>o', ':Neotree toggle<CR>', { desc = 'Open Neotree' })
 vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save File' })
 
 -- [[ Configure Telescope ]]
