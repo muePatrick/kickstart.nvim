@@ -203,6 +203,21 @@ require('lazy').setup({
     },
   },
 
+  {'akinsho/flutter-tools.nvim',
+    opts = {
+      decorations = {
+        statusline = {
+          device = true,
+        }
+      },
+      lsp = {
+        color = {
+          enabled = true,
+        },
+      },
+    },
+  },
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -306,6 +321,9 @@ require('telescope').setup {
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
+
+pcall(require('telescope').load_extension, 'flutter')
+vim.keymap.set('n', '<leader>f', ':Telescope flutter commands<CR>', { desc = 'List [F]lutter commands' })
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
