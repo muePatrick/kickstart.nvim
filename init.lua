@@ -196,6 +196,13 @@ require('lazy').setup({
 
   'weilbith/nvim-code-action-menu',
 
+  {'romgrk/barbar.nvim',
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    init = function() vim.g.barbar_auto_setup = true end,
+    opts = {
+    },
+  },
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -282,6 +289,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.keymap.set('n', '<leader>p', ':Explore<CR>', { desc = 'Open Explorer' })
 vim.keymap.set('n', '<leader>o', ':Neotree toggle<CR>', { desc = 'Open Neotree' })
 vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save File' })
+vim.keymap.set('n', '<C-w>d', ':BufferClose<CR>', { desc = 'Close Buffer (keep window layout)' })
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
