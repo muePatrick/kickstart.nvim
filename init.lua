@@ -206,6 +206,33 @@ require('lazy').setup({
 
   'wakatime/vim-wakatime',
 
+  {
+    'm4xshen/autoclose.nvim',
+    opts = {
+     keys = {
+        ["("] = { escape = false, close = true, pair = "()" },
+        ["["] = { escape = false, close = true, pair = "[]" },
+        ["{"] = { escape = false, close = true, pair = "{}" },
+
+        [">"] = { escape = true, close = false, pair = "<>" },
+        [")"] = { escape = true, close = false, pair = "()" },
+        ["]"] = { escape = true, close = false, pair = "[]" },
+        ["}"] = { escape = true, close = false, pair = "{}" },
+
+        ['"'] = { escape = true, close = true, pair = '""' },
+        ["'"] = { escape = true, close = true, pair = "''" },
+        ["`"] = { escape = true, close = true, pair = "``" },
+     },
+     options = {
+        disabled_filetypes = { },
+        disable_when_touch = false,
+        touch_regex = "[%w(%[{]",
+        pair_spaces = false,
+        auto_indent = true,
+     },
+    },
+  },
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
