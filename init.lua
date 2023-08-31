@@ -295,6 +295,9 @@ vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save File' })
 vim.keymap.set('n', '<C-w>d', ':BufferClose<CR>', { desc = 'Close Buffer (keep window layout)' })
 vim.keymap.set('n', '<C-w><S-d>', ':BufferCloseAllButVisible<CR>', { desc = 'Close All Buffers But Visible' })
 
+vim.keymap.set('n', '<F5>', ':e<CR>', { desc = 'Reload Buffer' })
+vim.keymap.set('n', '<F6>', ':silent bufdo e<CR>', { desc = 'Reload All Buffers' })
+
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
