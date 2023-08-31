@@ -293,6 +293,7 @@ vim.keymap.set('n', '<leader>p', ':Explore<CR>', { desc = 'Open Explorer' })
 vim.keymap.set('n', '<leader>o', ':Neotree toggle<CR>', { desc = 'Open Neotree' })
 vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save File' })
 vim.keymap.set('n', '<C-w>d', ':BufferClose<CR>', { desc = 'Close Buffer (keep window layout)' })
+vim.keymap.set('n', '<C-w><S-d>', ':BufferCloseAllButVisible<CR>', { desc = 'Close All Buffers But Visible' })
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
