@@ -176,6 +176,16 @@ require('lazy').setup({
     end,
   },
 
+  {
+    'Wansmer/treesj',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    config = function()
+      require('treesj').setup({
+        use_default_keymaps = false,
+      })
+    end,
+  },
+
   { import = 'custom.plugins' },
 }, {})
 
@@ -256,6 +266,8 @@ vim.keymap.set('n', '<C-w><S-d>', ':BufferCloseAllButVisible<CR>', { desc = 'Clo
 
 vim.keymap.set('n', '<F5>', ':e<CR>', { desc = 'Reload Buffer' })
 vim.keymap.set('n', '<F6>', ':silent bufdo e<CR>', { desc = 'Reload All Buffers' })
+
+vim.keymap.set('n', '<leader>fw', ':TSJToggle<CR>', { desc = 'Toggle code block wrap (objects, arrays, functions, etc.)' })
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
