@@ -228,7 +228,7 @@ require('lazy').setup({
         disable_when_touch = true,
         touch_regex = "[%w(%[{]",
         pair_spaces = false,
-        auto_indent = true,
+        auto_indent = false,
      },
     },
   },
