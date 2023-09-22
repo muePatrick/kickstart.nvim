@@ -31,6 +31,11 @@ Additional system requirements:
   - [ripgrep](https://github.com/BurntSushi/ripgrep#installation) is required for multiple [telescope](https://github.com/nvim-telescope/telescope.nvim#suggested-dependencies) pickers.
 - See as well [Windows Installation](#Windows-Installation)
 
+### GitHub Copilot
+
+* Make sure your GitHub has Copilot enabled
+* run `:Copilot setup` to connect your GitHub account to the Copilot plugin
+
 ### Configuration And Extension
 
 * Inside of your fork, feel free to modify any file you like! It's your fork!
