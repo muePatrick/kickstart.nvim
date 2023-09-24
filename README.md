@@ -31,6 +31,10 @@ Additional system requirements:
   - [ripgrep](https://github.com/BurntSushi/ripgrep#installation) is required for multiple [telescope](https://github.com/nvim-telescope/telescope.nvim#suggested-dependencies) pickers.
 - See as well [Windows Installation](#Windows-Installation)
 
+Live Grep needs external depencencies:
+- [RipGrep](https://github.com/BurntSushi/ripgrep#installation)
+- [FD](https://github.com/sharkdp/fd#installation)
+
 ### GitHub Copilot
 
 * Make sure your GitHub has Copilot enabled
