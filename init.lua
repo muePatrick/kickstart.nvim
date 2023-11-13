@@ -141,9 +141,22 @@ require('lazy').setup({
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
+    main = "ibl",
     opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
+      -- char = '┊',
+      -- show_trailing_blankline_indent = false,
+      indent = {
+        highlight = 'IblIndent',
+        char = "┊",
+      },
+      scope = {
+        enabled = true,
+        char = "┊",
+        -- highlight = "IblScope",
+        highlight = { "Function", "Label" },
+        show_start = true,
+        show_end = true,
+      },
     },
   },
 
