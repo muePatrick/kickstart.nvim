@@ -7,6 +7,7 @@ return {
       'MunifTanjim/nui.nvim',
     },
     opts = {
+      enable_normal_mode_for_inputs = true,
       filesystem = {
         filtered_items = {
           hide_dotfiles = false,
