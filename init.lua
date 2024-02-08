@@ -97,7 +97,22 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  {
+    'folke/which-key.nvim',
+    opts = {},
+    config = function()
+      require("which-key").register({
+        c = { name = "[C]ode" },
+        d = { name = "[D]ocumentation" },
+        f = { name = "[F]ormat" },
+        g = { name = "[G]it" },
+        r = { name = "[R]andom" },
+        s = { name = "[S]earch" },
+        w = { name = "[W]orkspace" },
+    }, { prefix = "<leader>" })
+        end,
+  },
+
   { -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
