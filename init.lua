@@ -273,6 +273,8 @@ vim.keymap.set('n', '<F6>', ':silent bufdo e<CR>', { desc = 'Reload All Buffers'
 
 vim.keymap.set('n', '<leader>fw', ':TSJToggle<CR>', { desc = 'Toggle code block wrap (objects, arrays, functions, etc.)' })
 
+vim.keymap.set('n', '<S-p>', ':Telescope neoclip<CR>', { desc = 'Open yank history' })
+
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
