@@ -277,7 +277,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.keymap.set('n', '<leader>p', ':Explore<CR>', { desc = 'Open Explorer' })
 vim.keymap.set('n', '<leader>o', ':Neotree toggle<CR>', { desc = 'Open Neotree' })
-vim.keymap.set('n', '<leader>g', ':Neotree right git_status toggle<CR>', { desc = 'Open [G]it Status' })
 vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save File' })
 vim.keymap.set('n', '<C-w>d', ':BufferClose<CR>', { desc = 'Close Buffer (keep window layout)' })
 vim.keymap.set('n', '<C-w><S-d>', ':BufferCloseAllButVisible<CR>', { desc = 'Close All Buffers But Visible' })
@@ -325,6 +324,12 @@ vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { de
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>ss', function() require("flash").jump() end, { desc = '[S]earch Flash' })
+
+vim.keymap.set('n', '<leader>gt', ':Neotree right git_status toggle<CR>', { desc = 'Open [G]it [T]ree' })
+vim.keymap.set('n', '<leader>gs', require('telescope.builtin').git_status, { desc = '[G]it [S]tatus' })
+vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_commits, { desc = '[G]it [C]ommits' })
+vim.keymap.set('n', '<leader>gb', require('telescope.builtin').git_branches, { desc = '[G]it [B]ranches' })
+vim.keymap.set('n', '<leader>go', ':GBrowse<CR>', { desc = '[G]it [O]pen in browser' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
