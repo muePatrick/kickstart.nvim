@@ -290,6 +290,8 @@ vim.keymap.set('n', '<leader>fw', ':TSJToggle<CR>', { desc = 'Toggle code block 
 
 vim.keymap.set('n', '<S-p>', ':Telescope neoclip<CR>', { desc = 'Open yank history' })
 
+vim.keymap.set('n', '<C-p>', 'A<CR><ESC>p', { desc = 'Open yank history' })
+
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
