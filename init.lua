@@ -324,12 +324,16 @@ vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { de
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>ss', function() require("flash").jump() end, { desc = '[S]earch Flash' })
+vim.keymap.set('n', '<leader>so', require('telescope.builtin').oldfiles, { desc = '[S]earch [O]ldfiles' })
+vim.keymap.set('n', '<leader>sc', require('telescope.builtin').spell_suggest, { desc = '[S]earch [C]orrections' })
 
 vim.keymap.set('n', '<leader>gt', ':Neotree right git_status toggle<CR>', { desc = 'Open [G]it [T]ree' })
 vim.keymap.set('n', '<leader>gs', require('telescope.builtin').git_status, { desc = '[G]it [S]tatus' })
 vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_commits, { desc = '[G]it [C]ommits' })
 vim.keymap.set('n', '<leader>gb', require('telescope.builtin').git_branches, { desc = '[G]it [B]ranches' })
 vim.keymap.set('n', '<leader>go', ':GBrowse<CR>', { desc = '[G]it [O]pen in browser' })
+
+vim.keymap.set('n', '<leader>rs', ':tabnew<CR>', { desc = '[S]cratch Buffer' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
