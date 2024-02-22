@@ -324,7 +324,7 @@ vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { de
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>ss', function() require("flash").jump() end, { desc = '[S]earch Flash' })
-vim.keymap.set('n', '<leader>so', require('telescope.builtin').oldfiles, { desc = '[S]earch [O]ldfiles' })
+vim.keymap.set('n', '<leader>so', function() require('telescope.builtin').oldfiles({ only_cwd = true }) end, { desc = '[S]earch [O]ldfiles' })
 vim.keymap.set('n', '<leader>sc', require('telescope.builtin').spell_suggest, { desc = '[S]earch [C]orrections' })
 vim.keymap.set('n', '<leader>sj', require('telescope.builtin').jumplist, { desc = '[S]earch [J]umps' })
 vim.keymap.set('n', '<leader>sm', require('telescope.builtin').marks, { desc = '[S]earch [M]arks' })
