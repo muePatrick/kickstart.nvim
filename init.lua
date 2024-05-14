@@ -254,6 +254,9 @@ vim.o.termguicolors = true
 vim.o.spell = true
 vim.o.spelllang = 'en_us,de_20'
 
+-- set conceallevel for window to 1 this setting is needed for the obsidian plugin
+vim.wo.conceallevel = 1
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
