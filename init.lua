@@ -451,7 +451,7 @@ local on_attach = function(_, bufnr)
   -- TODO remove from on_attach wrapper
   nmap('<leader><enter>', ':CodeActionMenu<CR>', '[C]ode [A]ction Menu')
 
-  nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+  nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
   nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
