@@ -193,6 +193,7 @@ require('lazy').setup({
 
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    build = ":TSUpdate",
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
@@ -367,6 +368,9 @@ require('nvim-treesitter.configs').setup {
       lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
+        -- These are available in visual mode (and will also show up in the hotkey preview)
+        -- They can also have a description like so:
+        -- ['aa'] = { query = "@assignment.outer", desc = "Select [A]round [A]ssignment" },
         ['aa'] = '@parameter.outer',
         ['ia'] = '@parameter.inner',
         ['af'] = '@function.outer',
