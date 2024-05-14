@@ -1,0 +1,5 @@
+return {
+  {
+    "zef/vim-cycle",
+  }
+}
