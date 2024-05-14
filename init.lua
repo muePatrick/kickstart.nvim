@@ -333,6 +333,17 @@ vim.keymap.set('n', '<leader>sc', require('telescope.builtin').spell_suggest, { 
 vim.keymap.set('n', '<leader>sj', require('telescope.builtin').jumplist, { desc = '[S]earch [J]umps' })
 vim.keymap.set('n', '<leader>sm', require('telescope.builtin').marks, { desc = '[S]earch [M]arks' })
 vim.keymap.set('n', '<leader>st', ':TodoTelescope<CR>', { desc = '[S]earch [T]odo' })
+vim.keymap.set('n', '<leader>sy',
+  function()
+    require('telescope.builtin').lsp_document_symbols({
+      symbols = {
+        "method",
+        "function",
+        "variable",
+        "constant",
+      }
+    })
+  end, { desc = '[S]earch S[y]mbols' })
 
 vim.keymap.set('n', '<leader>gt', ':Neotree right git_status toggle<CR>', { desc = 'Open [G]it [T]ree' })
 vim.keymap.set('n', '<leader>gs', require('telescope.builtin').git_status, { desc = '[G]it [S]tatus' })
