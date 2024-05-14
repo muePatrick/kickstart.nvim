@@ -352,6 +352,7 @@ vim.keymap.set('n', '<leader>gb', require('telescope.builtin').git_branches, { d
 vim.keymap.set('n', '<leader>go', ':GBrowse<CR>', { desc = '[G]it [O]pen in browser' })
 
 vim.keymap.set('n', '<leader>rs', ':tabnew<CR>', { desc = '[S]cratch Buffer' })
+vim.keymap.set('n', '<leader>ra', require('telescope.builtin').builtin, { desc = 'List Telescope builtins' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
