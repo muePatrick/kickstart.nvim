@@ -483,7 +483,18 @@ end
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
   -- clangd = {},
-  gopls = {},
+  gopls = {
+    -- Mason manages its own gopls version
+    -- run :MasonInstall gopls to install the latest version after a Go update
+    -- https://github.com/golang/go/issues/66743#issuecomment-2045815517
+    gopls = {
+      completeUnimported = true,
+      usePlaceholders = true,
+      analyses = {
+        unusedparams = true,
+      },
+    },
+  },
   pyright = {},
   -- rust_analyzer = {},
   tsserver = {},
