@@ -359,6 +359,10 @@ vim.keymap.set('n', '<leader>rc',
     vim.fn.jobstart({ "code", ".", "-g", filePathWithCursor })
   end, { desc = 'Open in VS [C]ode' })
 
+-- remap shift + up arrow to the function of ctrl + e
+vim.keymap.set('n', '<S-Down>', '<C-e>', { desc = 'Scroll up' })
+vim.keymap.set('n', '<S-Up>', '<C-y>', { desc = 'Scroll down' })
+
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
