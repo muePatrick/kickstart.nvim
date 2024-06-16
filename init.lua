@@ -535,6 +535,14 @@ mason_lspconfig.setup_handlers {
   end,
 }
 
+vim.api.nvim_create_augroup('AutoFormatting', {})
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*', -- could be e.g. '*.go'
+  group = 'AutoFormatting',
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+})
 -- nvim-cmp setup
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
