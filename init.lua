@@ -353,6 +353,11 @@ vim.keymap.set('n', '<leader>go', ':GBrowse<CR>', { desc = '[G]it [O]pen in brow
 
 vim.keymap.set('n', '<leader>rs', ':tabnew<CR>', { desc = '[S]cratch Buffer' })
 vim.keymap.set('n', '<leader>ra', require('telescope.builtin').builtin, { desc = 'List Telescope builtins' })
+vim.keymap.set('n', '<leader>rc',
+  function()
+    local filePathWithCursor = vim.fn.join({ vim.fn.expand("%"), vim.fn.line('.'), vim.fn.col('.') }, ':')
+    vim.fn.jobstart({ "code", ".", "-g", filePathWithCursor })
+  end, { desc = 'Open in VS [C]ode' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
