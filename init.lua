@@ -479,6 +479,7 @@ local on_attach = function(_, bufnr)
   end
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+  nmap('<leader>fr', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
   -- TODO remove from on_attach wrapper
   nmap('<leader><enter>', ':CodeActionMenu<CR>', '[C]ode [A]ction Menu')
