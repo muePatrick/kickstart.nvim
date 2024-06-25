@@ -6,6 +6,9 @@ return {
       highlight = {
         pattern = [[<(KEYWORDS)]],
       },
+      search = {
+        pattern = [[\b(KEYWORDS)\b]],
+      },
     },
   }
 }
