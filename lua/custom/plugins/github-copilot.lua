@@ -50,6 +50,8 @@ return {
         -- to the accepted suggestion
         replace_keycodes = false,
       })
+      vim.keymap.set('n', '<F2>', ':Copilot enable<CR>', { desc = 'Copilot: Enable' })
+      vim.keymap.set('n', '<F3>', ':Copilot disable<CR>', { desc = 'Copilot: Disable' })
     end,
   },
 }
