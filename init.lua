@@ -103,6 +103,7 @@ require('lazy').setup({
     opts = {},
     config = function()
       require("which-key").register({
+        a = { name = "[A]I" },
         c = { name = "[C]ode" },
         d = { name = "[D]ocumentation" },
         f = { name = "[F]ormat" },
@@ -168,6 +169,17 @@ require('lazy').setup({
         component_separators = '|',
         section_separators = '',
       },
+      sections = {
+        -- lualine_a = { 'mode' },
+        -- lualine_b = { 'branch', 'diff', 'diagnostics' },
+        -- lualine_c = { 'filename' },
+        -- lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        -- lualine_y = { 'progress' },
+        -- lualine_z = { 'location' }
+        lualine_x = { 'tabnine' },
+        lualine_y = { 'filetype' },
+        lualine_z = { 'progress', 'location' }
+      }
     },
   },
 
