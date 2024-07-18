@@ -384,7 +384,12 @@ vim.keymap.set('n', '<leader>gt', ':Neotree right git_status toggle<CR>', { desc
 vim.keymap.set('n', '<leader>gs', require('telescope.builtin').git_status, { desc = '[G]it [S]tatus' })
 vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_commits, { desc = '[G]it [C]ommits' })
 vim.keymap.set('n', '<leader>gb', require('telescope.builtin').git_branches, { desc = '[G]it [B]ranches' })
-vim.keymap.set('n', '<leader>go', ':GBrowse<CR>', { desc = '[G]it [O]pen in browser' })
+-- vim.keymap.set('n', '<leader>go', ':GBrowse<CR>', { desc = '[G]it [O]pen in browser' })
+vim.keymap.set('n', '<leader>go',
+  function()
+    local command = vim.fn.join({ vim.fn.line('.'), "GBrowse" }, '')
+    vim.cmd(command)
+  end, { desc = '[G]it [O]pen in browser' })
 
 vim.keymap.set('n', '<leader>rs', ':tabnew<CR>', { desc = '[S]cratch Buffer' })
 vim.keymap.set('n', '<leader>ra', require('telescope.builtin').builtin, { desc = 'List Telescope builtins' })
