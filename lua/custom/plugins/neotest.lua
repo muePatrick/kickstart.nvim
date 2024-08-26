@@ -27,7 +27,7 @@ return {
         end,
         { desc = '[T]est Run [T]estfile' }
       )
-      vim.keymap.set('n', '<leader>tp', require("neotest").output_panel.toggle, { desc = '[T]est [P]anel' })
+      -- vim.keymap.set('n', '<leader>tp', require("neotest").output_panel.toggle, { desc = '[T]est [P]anel' })
       vim.keymap.set('n', '<leader>ts', require("neotest").summary.toggle, { desc = '[T]est [S]ummary' })
       vim.keymap.set('n', '<leader>to', require("neotest").output.open, { desc = '[T]est [O]utput' })
     end,

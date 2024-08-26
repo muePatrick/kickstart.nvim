@@ -102,16 +102,75 @@ require('lazy').setup({
     'folke/which-key.nvim',
     opts = {},
     config = function()
-      require("which-key").register({
-        a = { name = "[A]I" },
-        c = { name = "[C]ode" },
-        d = { name = "[D]ocumentation" },
-        f = { name = "[F]ormat" },
-        g = { name = "[G]it" },
-        r = { name = "[R]andom" },
-        s = { name = "[S]earch" },
-        w = { name = "[W]orkspace" },
-      }, { prefix = "<leader>" })
+      require("which-key").setup({
+        icons = {
+          group = "",    -- do not add additional icons to groups, all icons are manually defined
+          rules = false, -- do not automatically add icons to mappings
+          separator = "",
+          breadcrumb = "",
+        }
+      })
+      require("which-key").add({ -- group icons
+        { "<leader>a", group = "[A]I",            icon = { icon = "󱜙", color = "yellow" } },
+        { "<leader>d", group = "[D]ocumentation", icon = { icon = "󰈙", color = "yellow" } },
+        { "<leader>f", group = "[F]ormat",        icon = { icon = "", color = "yellow" }, mode = "n" },
+        { "<leader>f", group = "[F]ormat",        icon = { icon = "", color = "yellow" }, mode = "x" },
+        { "<leader>g", group = "[G]it",           icon = { icon = "", color = "yellow" } },
+        { "<leader>r", group = "[R]andom",        icon = { icon = "󱅕", color = "yellow" } },
+        { "<leader>s", group = "[S]earch",        icon = { icon = "", color = "yellow" } },
+        { "<leader>t", group = "[T]est",          icon = { icon = "", color = "yellow" } },
+        { "<leader>w", group = "[W]orkspace",     icon = { icon = "󰃥", color = "yellow" } },
+      })
+      require("which-key").add({ -- icons in groups
+        { "<leader>ac",       icon = { icon = "󱜹", color = "yellow" } },
+        { "<leader>fw",       icon = { icon = "", color = "yellow" } },
+        { "<leader>gb",       icon = { icon = "", color = "yellow" } },
+        { "<leader>gc",       icon = { icon = "", color = "yellow" } },
+        { "<leader>gd",       icon = { icon = "", color = "yellow" } },
+        { "<leader>gD",       icon = { icon = "", color = "yellow" } },
+        { "<leader>gs",       icon = { icon = "", color = "yellow" } },
+        { "<leader>gt",       icon = { icon = "", color = "yellow" } },
+        { "<leader>go",       icon = { icon = "", color = "yellow" } },
+        { "<leader>ra",       icon = { icon = "", color = "yellow" } },
+        { "<leader>rc",       icon = { icon = "", color = "yellow" } },
+        { "<leader>rs",       icon = { icon = "", color = "yellow" } },
+        { "<leader>ss",       icon = { icon = "󱐋", color = "yellow" } },
+        { "<leader>sc",       icon = { icon = "󱣩", color = "yellow" } },
+        { "<leader>sd",       icon = { icon = "", color = "yellow" } },
+        { "<leader>sf",       icon = { icon = "󰱽", color = "yellow" } },
+        { "<leader>sg",       icon = { icon = "", color = "yellow" } },
+        { "<leader>sh",       icon = { icon = "󰋖", color = "yellow" } },
+        { "<leader>sj",       icon = { icon = "󱈇", color = "yellow" } },
+        { "<leader>sm",       icon = { icon = "󱤈", color = "yellow" } },
+        { "<leader>so",       icon = { icon = "󰱂", color = "yellow" } },
+        { "<leader>st",       icon = { icon = "󱩾", color = "yellow" } },
+        { "<leader>sw",       icon = { icon = "", color = "yellow" } },
+        { "<leader>sy",       icon = { icon = "󰺯", color = "yellow" } },
+        { "<leader>to",       icon = { icon = "", color = "yellow" } },
+        { "<leader>ts",       icon = { icon = "", color = "yellow" } },
+        { "<leader>t<enter>", icon = { icon = "", color = "yellow" } },
+        { "<leader>tt",       icon = { icon = "", color = "yellow" } },
+      })
+      require("which-key").add({ -- icons on top level (after leader)
+        { "<leader>.",       icon = { icon = "󰱺", color = "blue" } },
+        { "<leader>l",       icon = { icon = "", color = "blue" } },
+        { "<leader>o",       icon = { icon = "󰙅", color = "blue" } },
+        { "<leader>p",       icon = { icon = "", color = "blue" } },
+        { "<leader>/",       icon = { icon = "", color = "blue" } },
+        { "<leader><space>", icon = { icon = "󱦞", color = "blue" } },
+        { "<leader><tab>",   icon = { icon = "", color = "blue" } },
+        { "<leader><enter>", icon = { icon = "", color = "blue" } },
+        { "<leader>q",       icon = { icon = "󰺲", color = "blue" } },
+        { "<leader>e",       icon = { icon = "", color = "blue" } },
+        { "<leader>R",       icon = { icon = "󰊪", color = "blue" } },
+      })
+      require("which-key").add({ -- goto icons
+        { "gd", icon = { icon = "󱍢", color = "purple" } },
+        { "gD", icon = { icon = "󱍢", color = "purple" } },
+        { "gI", icon = { icon = "󱍢", color = "purple" } },
+        { "gr", icon = { icon = "󱍢", color = "purple" } },
+        { "gt", icon = { icon = "󱍢", color = "purple" } },
+      })
     end,
   },
 
@@ -343,15 +402,14 @@ require('telescope').setup {
 pcall(require('telescope').load_extension, 'fzf')
 
 -- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = 'Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
     winblend = 10,
     previewer = false,
   })
-end, { desc = '[/] Fuzzily search in current buffer' })
+end, { desc = 'Fuzzily search in current buffer' })
 
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
@@ -395,6 +453,7 @@ vim.keymap.set('n', '<leader>rc',
     local filePathWithCursor = vim.fn.join({ vim.fn.expand("%"), vim.fn.line('.'), vim.fn.col('.') }, ':')
     vim.fn.jobstart({ "code", ".", "-g", filePathWithCursor })
   end, { desc = 'Open in VS [C]ode' })
+vim.keymap.set('n', '<leader><enter>', ':CodeActionMenu<CR>', { desc = 'Code Action Menu' })
 
 -- remap shift + up arrow to the function of ctrl + e
 vim.keymap.set('n', '<S-Down>', '<C-e>', { desc = 'Scroll up' })
@@ -460,10 +519,10 @@ require('nvim-treesitter.configs').setup {
     swap = {
       enable = true,
       swap_next = {
-            ['<leader>a'] = '@parameter.inner',
+        -- ['<leader>a'] = '@parameter.inner',
       },
       swap_previous = {
-            ['<leader>A'] = '@parameter.inner',
+        -- ['<leader>A'] = '@parameter.inner',
       },
     },
   },
@@ -485,23 +544,21 @@ local on_attach = function(_, bufnr)
   -- In this case, we create a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
   local nmap = function(keys, func, desc)
-    if desc then
-      desc = 'LSP: ' .. desc
-    end
+    -- if desc then
+    -- desc = 'LSP: ' .. desc
+    -- end
 
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>fr', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-  -- TODO remove from on_attach wrapper
-  nmap('<leader><enter>', ':CodeActionMenu<CR>', '[C]ode [A]ction Menu')
 
   nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-  nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+  nmap('gt', vim.lsp.buf.type_definition, '[G]oto [T]ype Definition')
+  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
   nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
@@ -510,7 +567,6 @@ local on_attach = function(_, bufnr)
   nmap('<leader>dd', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
   nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
   nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
   nmap('<leader>wl', function()

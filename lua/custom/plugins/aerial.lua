@@ -6,6 +6,6 @@ return {
   },
   config = function()
     require("aerial").setup({})
-    vim.keymap.set('n', '<leader>l', ":AerialToggle<CR>", { desc = 'Toggle File Out[l]ine' })
+    vim.keymap.set('n', '<leader>l', ":AerialToggle<CR>", { desc = 'Toggle File Outline' })
   end,
 }
