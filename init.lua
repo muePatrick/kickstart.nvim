@@ -557,6 +557,7 @@ local servers = {
       telemetry = { enable = false },
     },
   },
+  jsonls = {},
 }
 
 vim.keymap.set('n', '<leader>.', ':EslintFixAll<CR>', { desc = 'Eslint: Fix All' })
