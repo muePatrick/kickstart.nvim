@@ -367,7 +367,7 @@ vim.keymap.set('n', '<leader>so', function() require('telescope.builtin').oldfil
 vim.keymap.set('n', '<leader>sc', require('telescope.builtin').spell_suggest, { desc = '[S]earch [C]orrections' })
 vim.keymap.set('n', '<leader>sj', require('telescope.builtin').jumplist, { desc = '[S]earch [J]umps' })
 vim.keymap.set('n', '<leader>sm', require('telescope.builtin').marks, { desc = '[S]earch [M]arks' })
-vim.keymap.set('n', '<leader>st', ':TodoTelescope<CR>', { desc = '[S]earch [T]odo' })
+vim.keymap.set('n', '<leader>st', ':TodoTelescope keywords=TODO,FIXME,BUG<CR>', { desc = '[S]earch [T]odo' })
 vim.keymap.set('n', '<leader>sy',
   function()
     require('telescope.builtin').lsp_document_symbols({
