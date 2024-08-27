@@ -194,30 +194,6 @@ require('lazy').setup({
   },
 
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    config = function()
-      -- vim.cmd.colorscheme 'onedark'
-    end,
-  },
-
-  {
-    'sainnhe/gruvbox-material',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      -- Optionally configure and load the colorscheme
-      -- directly inside the plugin declaration.
-      vim.g.gruvbox_material_enable_italic = true
-      vim.g.gruvbox_material_background = 'soft'
-      vim.g.gruvbox_material_better_performance = 1
-      vim.o.termguicolors = true
-      vim.cmd.colorscheme('gruvbox-material')
-    end,
-  },
-
-  {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
@@ -295,6 +271,7 @@ require('lazy').setup({
   },
 
   { import = 'custom.plugins' },
+  { import = 'custom.themes' },
 }, {})
 
 -- [[ Setting options ]]
@@ -448,6 +425,7 @@ vim.keymap.set('n', '<leader>go',
 
 vim.keymap.set('n', '<leader>rs', ':tabnew<CR>', { desc = '[S]cratch Buffer' })
 vim.keymap.set('n', '<leader>ra', require('telescope.builtin').builtin, { desc = 'List Telescope builtins' })
+vim.keymap.set('n', '<leader>rt', require('telescope.builtin').colorscheme, { desc = 'List Telescope builtins' })
 vim.keymap.set('n', '<leader>rc',
   function()
     local filePathWithCursor = vim.fn.join({ vim.fn.expand("%"), vim.fn.line('.'), vim.fn.col('.') }, ':')
