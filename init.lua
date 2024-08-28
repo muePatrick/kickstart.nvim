@@ -1,40 +1,3 @@
---[[
-
-=====================================================================
-==================== READ THIS BEFORE CONTINUING ====================
-=====================================================================
-
-Kickstart.nvim is *not* a distribution.
-
-Kickstart.nvim is a template for your own configuration.
-  The goal is that you can read every line of code, top-to-bottom, and understand
-  what your configuration is doing.
-
-  Once you've done that, you should start exploring, configuring and tinkering to
-  explore Neovim!
-
-  If you don't know anything about Lua, I recommend taking some time to read through
-  a guide. One possible example:
-  - https://learnxinyminutes.com/docs/lua/
-
-  And then you can explore or search through `:help lua-guide`
-
-
-Kickstart Guide:
-
-I have left several `:help X` comments throughout the init.lua
-You should run that command and read that help section for more information.
-
-In addition, I have some `NOTE:` items throughout the file.
-These are for you, the reader to help understand what is happening. Feel free to delete
-them once you know what you're doing, but they should serve as a guide for when you
-are first encountering a few different constructs in your nvim config.
-
-I hope you enjoy your Neovim journey,
-- TJ
-
-P.S. You can delete this when you're done too. It's your config now :)
---]]
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
@@ -51,20 +14,13 @@ if not vim.loop.fs_stat(lazypath) then
     'clone',
     '--filter=blob:none',
     'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
+    '--branch=stable',
     lazypath,
   }
 end
 vim.opt.rtp:prepend(lazypath)
 
--- NOTE: Here is where you install your plugins.
---  You can configure plugins using the `config` key.
---
---  You can also configure plugins after the setup call,
---    as they will be available in your neovim runtime.
 require('lazy').setup({
-  -- NOTE: First, some plugins that don't require any configuration
-
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
@@ -269,21 +225,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.keymap.set('n', '<leader>p', ':Explore<CR>', { desc = 'Open Explorer' })
-vim.keymap.set('n', '<leader>o', ':Neotree toggle<CR>', { desc = 'Open Neotree' })
-vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save File' })
-vim.keymap.set('n', '<C-w>d', ':BufferClose<CR>', { desc = 'Close Buffer (keep window layout)' })
-vim.keymap.set('n', '<C-w><S-d>', ':BufferCloseAllButVisible<CR>', { desc = 'Close All Buffers But Visible' })
-vim.keymap.set('n', '<C-w><S-c>', ':bd<CR>', { desc = 'Close Buffer And Pane' })
+-- moving this into the plugin file breaks the plugin
+vim.keymap.set('n', '<leader>st', ':TodoTelescope keywords=TODO,FIXME,BUG<CR>', { desc = '[S]earch [T]odo' })
 
+vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save File' })
+vim.keymap.set('n', '<C-w><S-c>', ':bd<CR>', { desc = 'Close Buffer And Pane' })
 vim.keymap.set('n', '<F5>', ':e<CR>', { desc = 'Reload Buffer' })
 vim.keymap.set('n', '<F6>', ':silent bufdo e<CR>', { desc = 'Reload All Buffers' })
-
-vim.keymap.set('n', '<leader>fw', ':TSJToggle<CR>',
-  { desc = 'Toggle code block wrap (objects, arrays, functions, etc.)' })
-
-vim.keymap.set('n', '<S-p>', ':Telescope neoclip<CR>', { desc = 'Open yank history' })
-
-vim.keymap.set('n', '<C-p>', 'A<CR><ESC>p', { desc = 'Open yank history' })
+vim.keymap.set('n', '<C-p>', 'A<CR><ESC>p', { desc = 'Paste after newline' })
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
@@ -322,7 +271,6 @@ vim.keymap.set('n', '<leader>so', function() require('telescope.builtin').oldfil
 vim.keymap.set('n', '<leader>sc', require('telescope.builtin').spell_suggest, { desc = '[S]earch [C]orrections' })
 vim.keymap.set('n', '<leader>sj', require('telescope.builtin').jumplist, { desc = '[S]earch [J]umps' })
 vim.keymap.set('n', '<leader>sm', require('telescope.builtin').marks, { desc = '[S]earch [M]arks' })
-vim.keymap.set('n', '<leader>st', ':TodoTelescope keywords=TODO,FIXME,BUG<CR>', { desc = '[S]earch [T]odo' })
 vim.keymap.set('n', '<leader>sy',
   function()
     require('telescope.builtin').lsp_document_symbols({
@@ -335,7 +283,6 @@ vim.keymap.set('n', '<leader>sy',
     })
   end, { desc = '[S]earch S[y]mbols' })
 
-vim.keymap.set('n', '<leader>gt', ':Neotree right git_status toggle<CR>', { desc = 'Open [G]it [T]ree' })
 vim.keymap.set('n', '<leader>gs', require('telescope.builtin').git_status, { desc = '[G]it [S]tatus' })
 vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_commits, { desc = '[G]it [C]ommits' })
 vim.keymap.set('n', '<leader>gb', require('telescope.builtin').git_branches, { desc = '[G]it [B]ranches' })
@@ -359,6 +306,13 @@ vim.keymap.set('n', '<leader><enter>', ':CodeActionMenu<CR>', { desc = 'Code Act
 -- remap shift + up arrow to the function of ctrl + e
 vim.keymap.set('n', '<S-Down>', '<C-e>', { desc = 'Scroll up' })
 vim.keymap.set('n', '<S-Up>', '<C-y>', { desc = 'Scroll down' })
+
+vim.keymap.set('n', '<tab>', '<C-W>w', { desc = 'Next Window' })
+vim.keymap.set('n', '<S-tab>', '<C-W>W', { desc = 'Previous Window' })
+-- FIXME
+-- vim.keymap.set('n', '<C-tab>', ':bnext<CR>', { desc = 'Next Buffer' })
+-- vim.keymap.set('n', '<C-S-tab>', ':bprevious<CR>', { desc = 'Previous Buffer' })
+vim.keymap.set('n', '<leader><tab>', ':b#<CR>', { desc = 'Toggle last used buffers' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -515,13 +469,6 @@ local servers = {
 }
 
 vim.keymap.set('n', '<leader>.', ':EslintFixAll<CR>', { desc = 'Eslint: Fix All' })
-
-vim.keymap.set('n', '<tab>', '<C-W>w', { desc = 'Next Window' })
-vim.keymap.set('n', '<S-tab>', '<C-W>W', { desc = 'Previous Window' })
--- FIXME
--- vim.keymap.set('n', '<C-tab>', ':bnext<CR>', { desc = 'Next Buffer' })
--- vim.keymap.set('n', '<C-S-tab>', ':bprevious<CR>', { desc = 'Previous Buffer' })
-vim.keymap.set('n', '<leader><tab>', ':b#<CR>', { desc = 'Toggle last used buffers' })
 
 -- Setup neovim lua configuration
 require('neodev').setup()
