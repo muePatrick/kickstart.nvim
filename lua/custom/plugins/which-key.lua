@@ -72,5 +72,13 @@ return {
       { "gr", icon = { icon = "󱍢", color = "purple" } },
       { "gt", icon = { icon = "󱍢", color = "purple" } },
     })
+    require("which-key").add({ -- window icons
+      { "<C-w>c", icon = { icon = "󰭌", color = "purple" }, desc = "Close Pane" },
+      { "<C-w>C", icon = { icon = "󱘄", color = "purple" } },
+      { "<C-w>d", icon = { icon = "", color = "purple" } },
+      { "<C-w>D", icon = { icon = "", color = "purple" } },
+      { "<C-w>s", icon = { icon = "", color = "purple" },  desc = "Split Window Horizontally" },
+      { "<C-w>v", icon = { icon = "", color = "purple" },  desc = "Split Window Ver tically" },
+    })
   end,
 }
