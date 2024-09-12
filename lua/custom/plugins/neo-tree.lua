@@ -19,6 +19,19 @@ return {
     config = function()
       vim.keymap.set('n', '<leader>o', ':Neotree toggle<CR>', { desc = 'Open Neotree' })
       vim.keymap.set('n', '<leader>gt', ':Neotree right git_status toggle<CR>', { desc = 'Open [G]it [T]ree' })
+      require("neo-tree").setup({
+        filesystem = {
+          filtered_items = {
+            visible = true,
+            hide_dotfiles = false,
+            hide_gitignored = false,
+          },
+          follow_current_file = {
+            enabled = true,
+            leave_dirs_open = false,
+          },
+        },
+      })
     end,
   },
 }
