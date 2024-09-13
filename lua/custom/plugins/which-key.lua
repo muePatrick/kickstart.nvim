@@ -35,6 +35,7 @@ return {
       { "<leader>ra",       icon = { icon = "", color = "yellow" } },
       { "<leader>rc",       icon = { icon = "", color = "yellow" } },
       { "<leader>rs",       icon = { icon = "", color = "yellow" } },
+      { "<leader>rr",       icon = { icon = "", color = "yellow" } },
       { "<leader>ss",       icon = { icon = "󱐋", color = "yellow" } },
       { "<leader>sc",       icon = { icon = "󱣩", color = "yellow" } },
       { "<leader>sd",       icon = { icon = "", color = "yellow" } },

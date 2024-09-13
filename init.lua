@@ -232,7 +232,9 @@ vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save File' })
 vim.keymap.set('n', '<C-w><S-c>', ':bd<CR>', { desc = 'Close Buffer And Pane' })
 vim.keymap.set('n', '<F5>', ':e<CR>', { desc = 'Reload Buffer' })
 vim.keymap.set('n', '<F6>', ':silent bufdo e<CR>', { desc = 'Reload All Buffers' })
-vim.keymap.set('n', '<C-p>', 'A<CR><ESC>p', { desc = 'Paste after newline' })
+vim.keymap.set('n', '<C-p>', 'A<CR><ESC>p', { desc = '[P]aste after newline' })
+vim.keymap.set('n', '<leader>rr', ':set relativenumber!<CR>',
+  { desc = 'Toggle relative line numbers' })
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
