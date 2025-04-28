@@ -303,7 +303,6 @@ vim.keymap.set('n', '<leader>rc',
     local filePathWithCursor = vim.fn.join({ vim.fn.expand("%"), vim.fn.line('.'), vim.fn.col('.') }, ':')
     vim.fn.jobstart({ "code", ".", "-g", filePathWithCursor })
   end, { desc = 'Open in VS [C]ode' })
-vim.keymap.set('n', '<leader><enter>', ':CodeActionMenu<CR>', { desc = 'Code Action Menu' })
 
 -- remap shift + up arrow to the function of ctrl + e
 vim.keymap.set('n', '<S-Down>', '<C-e>', { desc = 'Scroll up' })
