@@ -34,6 +34,7 @@ Additional system requirements:
 Live Grep needs external depencencies:
 - [RipGrep](https://github.com/BurntSushi/ripgrep#installation)
 - [FD](https://github.com/sharkdp/fd#installation)
+- [FFMPEG (beepboop)](https://github.com/sharkdp/ffmpeg#installation)
 
 ### GitHub Copilot
 
