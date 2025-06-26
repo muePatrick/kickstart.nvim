@@ -227,6 +227,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.keymap.set('n', '<leader>p', ':Explore<CR>', { desc = 'Open Explorer' })
 -- moving this into the plugin file breaks the plugin
 vim.keymap.set('n', '<leader>st', ':TodoTelescope keywords=TODO,FIXME,BUG<CR>', { desc = '[S]earch [T]odo' })
+vim.keymap.set('n', '<leader>sr', ':TodoTelescope keywords=RR,R:<CR>', { desc = '[S]earch [R]esearch' })
 
 vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save File' })
 vim.keymap.set('n', '<C-w><S-c>', ':bd<CR>', { desc = 'Close Buffer And Pane' })
