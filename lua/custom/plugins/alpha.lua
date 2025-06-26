@@ -1,0 +1,73 @@
+return {
+    {
+        'goolord/alpha-nvim',
+        dependencies = { 'echasnovski/mini.icons' },
+        config = function()
+            require 'alpha'.setup({
+                layout = {
+                    { type = "padding", val = 6 },
+                    { type = "text",    val = "APERTURE SCIENCE ENRICHMENT CENTER", opts = { position = "center", hl = "Type" } },
+                    { type = "padding", val = 2 },
+                    {
+                        type = "text",
+                        val = {
+                            [[             .,-:;//;:=,]],
+                            [[         . :H@@@MM@M#H/.,+%;,]],
+                            [[      ,/X+ +M@@M@MM%=,-%HMMM@X/,]],
+                            [[     -+@MM; $M@@MH+-,;XMMMM@MMMM@+-]],
+                            [[    ;@M@@M- XM@X;. -+XXXXXHHH@M@M#@/.]],
+                            [[  ,%MM@@MH ,@%=            .---=-=:=,.]],
+                            [[  -@#@@@MX .,              -%HX$$%%%+;]],
+                            [[ =-./@M@M$                  .;@MMMM@MM:]],
+                            [[ X@/ -$MM/                    .+MM@@@M$]],
+                            [[,@M@H: :@:                    . -X#@@@@-]],
+                            [[,@@@MMX, .                    /H- ;@M@M=]],
+                            [[.H@@@@M@+,                    %MM+..%#$.]],
+                            [[ /MMMM@MMH/.                  XM@MH; -;]],
+                            [[  /%+%$XHH@$=              , .H@@@@MX,]],
+                            [[   .=--------.           -%H.,@@@@@MX,]],
+                            [[   .%MM@@@HHHXX$$$%+- .:$MMX -M@@MM%.]],
+                            [[     =XMMM@MM@MM#H;,-+HMM@M+ /MMMX=]],
+                            [[       =%@M@M#@$-.=$@MM@@@M; %M%=]],
+                            [[         ,:+$+-,/H#MMMMMMM@- -,]],
+                            [[               =++%%%%+/:-.]],
+                        },
+                        opts = { position = "center", hl = "Type" },
+                    },
+                    { type = "padding", val = 2 },
+                    { type = "text",    val = "WE DO WHAT WE MUST BECAUSE WE CAN", opts = { position = "center", hl = "Type" } },
+                    { type = "padding", val = 2 },
+                    {
+                        type = "text",
+                        val = {
+                            [[            ,:/+/-]],
+                            [[            /M/              .,-=;//;-]],
+                            [[       .:/= ;MH/,    ,=/+%$XH@MM#@:]],
+                            [[      -$##@+$###@H@MMM#######H:.    -/H#]],
+                            [[ .,H@H@ X######@ -H#####@+-     -+H###@X]],
+                            [[  .,@##H;      +XM##M/,     =%@###@X;-]],
+                            [[-  :M##########$.    .:%M###@%:]],
+                            [[#H,   +H@@@$/-.  ,;$M###@%,          -]],
+                            [[###M=,,---,.-%%H####M$:          ,+@##]],
+                            [[@##################@/.         :%H##@$-]],
+                            [[##############H,         ;HM##M$=]],
+                            [[#################.    .=$M##M$=]],
+                            [[################H..;XM##M$=          .:+]],
+                            [[##################@%=           =+@MH%]],
+                            [[@#################M/.         =+H#X%=]],
+                            [[=+M###############M,      ,/X#H+:,]],
+                            [[  .;XM###########H=   ,/X#H+:;]],
+                            [[     .=+HM#######M+/+HM@+=.]],
+                            [[         ,:/%XM####H/.]],
+                            [[              ,.:=-.]],
+                        },
+                        opts = { position = "center", hl = "Type" },
+                    },
+                },
+                opts = {
+                    margin = 5,
+                },
+            })
+        end
+    },
+}
