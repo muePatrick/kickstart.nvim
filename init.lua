@@ -364,32 +364,32 @@ require('nvim-treesitter.configs').setup {
         -- These are available in visual mode (and will also show up in the hotkey preview)
         -- They can also have a description like so:
         -- ['aa'] = { query = "@assignment.outer", desc = "Select [A]round [A]ssignment" },
-            ['aa'] = '@parameter.outer',
-            ['ia'] = '@parameter.inner',
-            ['af'] = '@function.outer',
-            ['if'] = '@function.inner',
-            ['ac'] = '@class.outer',
-            ['ic'] = '@class.inner',
+        ['aa'] = '@parameter.outer',
+        ['ia'] = '@parameter.inner',
+        ['af'] = '@function.outer',
+        ['if'] = '@function.inner',
+        ['ac'] = '@class.outer',
+        ['ic'] = '@class.inner',
       },
     },
     move = {
       enable = true,
       set_jumps = true, -- whether to set jumps in the jumplist
       goto_next_start = {
-            [']m'] = '@function.outer',
-            [']]'] = '@class.outer',
+        [']m'] = '@function.outer',
+        [']]'] = '@class.outer',
       },
       goto_next_end = {
-            [']M'] = '@function.outer',
-            [']['] = '@class.outer',
+        [']M'] = '@function.outer',
+        [']['] = '@class.outer',
       },
       goto_previous_start = {
-            ['[m'] = '@function.outer',
-            ['[['] = '@class.outer',
+        ['[m'] = '@function.outer',
+        ['[['] = '@class.outer',
       },
       goto_previous_end = {
-            ['[M'] = '@function.outer',
-            ['[]'] = '@class.outer',
+        ['[M'] = '@function.outer',
+        ['[]'] = '@class.outer',
       },
     },
     swap = {
@@ -542,14 +542,14 @@ cmp.setup {
     end,
   },
   mapping = cmp.mapping.preset.insert {
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete {},
-        ['<CR>'] = cmp.mapping.confirm {
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete {},
+    ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-        ['<Tab>'] = cmp.mapping(function(fallback)
+    ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
@@ -558,7 +558,7 @@ cmp.setup {
         fallback()
       end
     end, { 'i', 's' }),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
