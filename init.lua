@@ -203,6 +203,9 @@ vim.o.termguicolors = true
 vim.o.spell = true
 vim.o.spelllang = 'en_us,de_20'
 
+vim.diagnostic.config({ virtual_lines = false }) -- shows diagnostics grayed out at the end of the line
+vim.diagnostic.config({ virtual_text = true })   -- shows diagnostics in the line below
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
@@ -319,6 +322,9 @@ vim.keymap.set('n', '<leader><tab>', ':b#<CR>', { desc = 'Toggle last used buffe
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
+  modules = {},         -- TODO had to be set after update, find proper setting
+  sync_install = false, -- TODO had to be set after update, find proper setting
+  ignore_install = {},  -- TODO had to be set after update, find proper setting
   -- Add languages to be installed here that you want installed for treesitter
   ensure_installed = {
     'c',
@@ -502,15 +508,18 @@ mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
 }
 
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-    }
-  end,
-}
+-- FIXME this is broken since the new major mason version. removing it fixes the
+-- error but may prevent autoloading lsps
+-- https://github.com/mason-org/mason-lspconfig.nvim/issues/545
+-- mason_lspconfig.setup_handlers {
+--   function(server_name)
+--     require('lspconfig')[server_name].setup {
+--       capabilities = capabilities,
+--       on_attach = on_attach,
+--       settings = servers[server_name],
+--     }
+--   end,
+-- }
 
 vim.api.nvim_create_augroup('AutoFormatting', {})
 vim.api.nvim_create_autocmd('BufWritePre', {
