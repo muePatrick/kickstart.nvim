@@ -234,6 +234,7 @@ vim.keymap.set('n', '<leader>sr', ':TodoTelescope keywords=RR,R:<CR>', { desc = 
 
 vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save File' })
 vim.keymap.set('n', '<C-w><S-c>', ':bd<CR>', { desc = 'Close Buffer And Pane' })
+vim.keymap.set('n', '<C-w>T', ':tabedit %<CR>', { desc = 'Break out into new tab' })
 vim.keymap.set('n', '<F5>', ':e<CR>', { desc = 'Reload Buffer' })
 vim.keymap.set('n', '<F6>', ':silent bufdo e<CR>', { desc = 'Reload All Buffers' })
 vim.keymap.set('n', '<C-p>', 'A<CR><ESC>p', { desc = '[P]aste after newline' })
