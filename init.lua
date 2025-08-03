@@ -415,6 +415,59 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+
+vim.keymap.set('n', 'gd', require('telescope.builtin').lsp_definitions, { desc = "[G]oto [D]efinition" })
+vim.keymap.set('n', 'gr', function()
+  require('telescope.builtin').lsp_references({
+    entry_maker = function(entry)
+      local formatted_entry = require('telescope.make_entry').gen_from_quickfix({})(entry)
+      Original_Display = formatted_entry.display
+      if string.find(entry.filename, "test") then
+        formatted_entry.display = function(f)
+          local original_display_string, path_style = Original_Display(f)
+          return " " .. original_display_string, path_style
+        end
+      elseif string.find(entry.filename, "mock") then
+        formatted_entry.display = function(f)
+          local original_display_string, path_style = Original_Display(f)
+          return " " .. original_display_string, path_style
+        end
+      else
+        formatted_entry.display = function(f)
+          local original_display_string, path_style = Original_Display(f)
+          return " " .. original_display_string, path_style
+        end
+      end
+      return formatted_entry
+    end,
+  })
+end, { desc = "[G]oto [R]eferences" })
+vim.keymap.set('n', 'gI', function()
+  require('telescope.builtin').lsp_implementations({
+    entry_maker = function(entry)
+      local formatted_entry = require('telescope.make_entry').gen_from_quickfix({})(entry)
+      Original_Display = formatted_entry.display
+      if string.find(entry.filename, "mock") then
+        formatted_entry.display = function(f)
+          local original_display_string, path_style = Original_Display(f)
+          return " " .. original_display_string, path_style
+        end
+      else
+        formatted_entry.display = function(f)
+          local original_display_string, path_style = Original_Display(f)
+          return " " .. original_display_string, path_style
+        end
+      end
+      return formatted_entry
+    end,
+  })
+end, { desc = "[G]oto [I]mplementation" })
+vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, { desc = "[G]oto [T]ype Definition" })
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
+
+vim.keymap.set('n', '<leader>fr', vim.lsp.buf.rename, { desc = "[R]ename" })
+vim.keymap.set('n', '<leader>do', vim.lsp.buf.hover, { desc = "Hover Documentation" })
+vim.keymap.set('n', '<leader>dd', vim.lsp.buf.signature_help, { desc = "Signature Documentation" })
 vim.keymap.set('n', '<leader>fr', vim.lsp.buf.rename, { desc = "[R]ename" })
 
 -- LSP settings.
@@ -436,17 +489,9 @@ local on_attach = function(_, bufnr)
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
 
-  nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-  nmap('gt', vim.lsp.buf.type_definition, '[G]oto [T]ype Definition')
-  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
   nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
-  -- See `:help K` for why this keymap
-  nmap('<leader>do', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<leader>dd', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
   nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
