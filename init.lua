@@ -468,17 +468,10 @@ vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaratio
 vim.keymap.set('n', '<leader>fr', vim.lsp.buf.rename, { desc = "[R]ename" })
 vim.keymap.set('n', '<leader>do', vim.lsp.buf.hover, { desc = "Hover Documentation" })
 vim.keymap.set('n', '<leader>dd', vim.lsp.buf.signature_help, { desc = "Signature Documentation" })
-vim.keymap.set('n', '<leader>fr', vim.lsp.buf.rename, { desc = "[R]ename" })
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
-  -- NOTE: Remember that lua is a real programming language, and as such it is possible
-  -- to define small helper and utility functions so you don't have to repeat yourself
-  -- many times.
-  --
-  -- In this case, we create a function that lets us more easily define mappings specific
-  -- for LSP related items. It sets the mode, buffer and description for us each time.
   local nmap = function(keys, func, desc)
     -- if desc then
     -- desc = 'LSP: ' .. desc
@@ -513,21 +506,22 @@ end
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
   -- clangd = {},
-  gopls = {
-    -- Mason manages its own gopls version
-    -- run :MasonInstall gopls to install the latest version after a Go update
-    -- https://github.com/golang/go/issues/66743#issuecomment-2045815517
-    gopls = {
-      completeUnimported = true,
-      usePlaceholders = true,
-      analyses = {
-        unusedparams = true,
-      },
-    },
-  },
+  -- gopls = {
+  --   -- Mason manages its own gopls version
+  --   -- run :MasonInstall gopls to install the latest version after a Go update
+  --   -- https://github.com/golang/go/issues/66743#issuecomment-2045815517
+  --   gopls = {
+  --     completeUnimported = true,
+  --     usePlaceholders = true,
+  --     analyses = {
+  --       unusedparams = true,
+  --     },
+  --   },
+  -- },
   pyright = {},
   -- rust_analyzer = {},
-  ts_ls = {},
+  -- ts_ls = {},
+  vtsls = {}, -- alternative to ts_ls
   eslint = {},
   cssls = {},
   cssmodules_ls = {},
