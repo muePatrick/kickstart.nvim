@@ -410,6 +410,76 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
+vim.keymap.set('n', 'ru', function()
+  local ts_utils = require 'nvim-treesitter.ts_utils'
+  local node = ts_utils.get_node_at_cursor()
+  print("Node type:", node:type())
+end, { desc = "Node [U]nder cursor", silent = true })
+
+vim.keymap.set('n', 'gh', function()
+  -- TODO extract the search for the declaration node for reusability
+  local ts_utils = require 'nvim-treesitter.ts_utils'
+  local node = ts_utils.get_node_at_cursor()
+  while node do
+    -- TODO *_declaration for it to also work for type definitons, etc.
+    if node:type() == 'function_declaration' or node:type() == 'method_declaration' then
+      local children = ts_utils.get_named_children(node)
+      for _, child in ipairs(children) do
+        -- TODO *_identifier for it to also work for type definitons, etc.
+        if child:type() == 'identifier' or child:type() == 'field_identifier' then
+          ts_utils.goto_node(child)
+          return
+        end
+      end
+    end
+    node = node:parent()
+  end
+end, { desc = "[G]oto function [h]ead", silent = true })
+
+vim.keymap.set('n', 'gp', function()
+  -- TODO extract the search for the declaration node for reusability
+  local ts_utils = require 'nvim-treesitter.ts_utils'
+  local node = ts_utils.get_node_at_cursor()
+  while node do
+    if node:type() == 'function_declaration' or node:type() == 'method_declaration' then
+      local children = ts_utils.get_named_children(node)
+      for index, child in ipairs(children) do
+        if child:type() == 'identifier' or child:type() == 'field_identifier' then
+          ts_utils.goto_node(children[index + 1])
+          return
+        end
+      end
+    end
+    node = node:parent()
+  end
+end, { desc = "[G]oto function [p]arameter list", silent = true })
+
+vim.keymap.set('n', '<C-Up>', function()
+  -- TODO extract the search for the declaration node for reusability
+  local ts_utils = require 'nvim-treesitter.ts_utils'
+  local node = ts_utils.get_node_at_cursor()
+  while node do
+    -- TODO *_declaration for it to also work for type definitons, etc.
+    if node:type() == 'function_declaration' or node:type() == 'method_declaration' or node:type() == 'type_declaration' or node:type() == 'import_declaration' then
+      ts_utils.goto_node(node:prev_sibling())
+    end
+    node = node:parent()
+  end
+end, { desc = "Goto previous function", silent = true })
+
+vim.keymap.set('n', '<C-Down>', function()
+  -- TODO extract the search for the declaration node for reusability
+  local ts_utils = require 'nvim-treesitter.ts_utils'
+  local node = ts_utils.get_node_at_cursor()
+  while node do
+    -- TODO *_declaration for it to also work for type definitons, etc.
+    if node:type() == 'function_declaration' or node:type() == 'method_declaration' or node:type() == 'type_declaration' or node:type() == 'import_declaration' then
+      ts_utils.goto_node(node:next_sibling())
+    end
+    node = node:parent()
+  end
+end, { desc = "Goto next function", silent = true })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
