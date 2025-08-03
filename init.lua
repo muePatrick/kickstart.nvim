@@ -409,6 +409,7 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+vim.keymap.set('n', '<leader>fr', vim.lsp.buf.rename, { desc = "[R]ename" })
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
@@ -428,7 +429,6 @@ local on_attach = function(_, bufnr)
   end
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>fr', vim.lsp.buf.rename, '[R]e[n]ame')
 
   nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
@@ -490,6 +490,37 @@ local servers = {
 }
 
 vim.keymap.set('n', '<leader>.', ':EslintFixAll<CR>', { desc = 'Eslint: Fix All' })
+
+local function organize_imports()
+  local ft = vim.bo.filetype:gsub("react$", "")
+
+  if not vim.tbl_contains({ "javascript", "typescript" }, ft) then
+    -- Organize imports is only available for JavaScript/TypeScript files
+    return
+  end
+
+  local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+  if #clients == 0 then
+    -- No LSP client attached to current buffer
+    return
+  end
+
+  local ok = vim.lsp.buf_request_sync(0, "workspace/executeCommand", {
+    command = (ft .. ".organizeImports"),
+    arguments = { vim.api.nvim_buf_get_name(0) },
+  }, 3000)
+
+  if not ok then
+    print("Command timeout or failed to complete.")
+  else
+    print("Imports organized successfully")
+  end
+end
+
+vim.api.nvim_create_user_command('OrganizeImports', organize_imports, {
+  desc = "Organize imports for JavaScript/TypeScript files",
+})
+vim.keymap.set('n', '<leader>fi', organize_imports, { desc = "Organize [i]mports" })
 
 -- Setup neovim lua configuration
 require('neodev').setup()

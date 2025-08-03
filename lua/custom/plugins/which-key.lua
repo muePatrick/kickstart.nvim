@@ -1,4 +1,5 @@
 -- Useful plugin to show you pending keybinds.
+-- Search for icons: https://www.nerdfonts.com/cheat-sheet
 return {
   'folke/which-key.nvim',
   opts = {},
@@ -25,6 +26,8 @@ return {
     require("which-key").add({ -- icons in groups
       { "<leader>ac", icon = { icon = "󱜹", color = "yellow" } },
       { "<leader>fw", icon = { icon = "", color = "yellow" } },
+      { "<leader>fr", icon = { icon = "󰑕", color = "yellow" } },
+      { "<leader>fi", icon = { icon = "󰒺", color = "yellow" } },
       { "<leader>gb", icon = { icon = "", color = "yellow" } },
       { "<leader>gc", icon = { icon = "", color = "yellow" } },
       { "<leader>gd", icon = { icon = "", color = "yellow" } },
