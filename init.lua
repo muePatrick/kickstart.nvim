@@ -247,10 +247,14 @@ require('telescope').setup {
   defaults = {
     mappings = {
       i = {
-            ['<C-u>'] = false,
-            ['<C-d>'] = require('telescope.actions').delete_buffer,
+        ['<C-u>'] = false,
+        ['<C-d>'] = require('telescope.actions').delete_buffer,
+        ['<C-q>'] = require('telescope.actions').send_selected_to_qflist + require('telescope.actions').open_qflist,
+        ['<C-f>'] = require('telescope.actions').add_selected_to_qflist + require('telescope.actions').open_qflist,
+        ['<C-a>'] = require('telescope.actions').select_all,
       },
     },
+    -- path_display = { 'absolute', 'smart' },
   },
 }
 
@@ -319,6 +323,7 @@ vim.keymap.set('n', '<S-tab>', '<C-W>W', { desc = 'Previous Window' })
 -- vim.keymap.set('n', '<C-tab>', ':bnext<CR>', { desc = 'Next Buffer' })
 -- vim.keymap.set('n', '<C-S-tab>', ':bprevious<CR>', { desc = 'Previous Buffer' })
 vim.keymap.set('n', '<leader><tab>', ':b#<CR>', { desc = 'Toggle last used buffers' })
+vim.keymap.set('n', '<C-n>', ':cn<CR>', { desc = '[N]ext item in quickfixlist' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
