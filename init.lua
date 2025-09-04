@@ -341,7 +341,7 @@ require('nvim-treesitter.configs').setup {
     'rust',
     'tsx',
     'typescript',
-    'help',
+    'vimdoc',
     'vim',
     'markdown',
     'markdown_inline',
