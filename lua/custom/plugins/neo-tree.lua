@@ -31,6 +31,13 @@ return {
             leave_dirs_open = false,
           },
         },
+        default_component_configs = {
+          indent = {
+            with_expanders = true,
+            expander_collapsed = "",
+            expander_expanded = "",
+          },
+        },
       })
     end,
   },
