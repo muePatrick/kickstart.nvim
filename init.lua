@@ -330,6 +330,19 @@ vim.keymap.set('n', '<S-tab>', '<C-W>W', { desc = 'Previous Window' })
 vim.keymap.set('n', '<leader><tab>', ':b#<CR>', { desc = 'Toggle last used buffers' })
 vim.keymap.set('n', '<C-n>', ':cn<CR>', { desc = '[N]ext item in quickfixlist' })
 
+vim.keymap.set('v', '<leader>fr', function()
+  vim.cmd('normal! "zy')
+  local selected_text = vim.fn.getreg('z')
+  local escaped_text = selected_text:gsub("([%^%$%(%)%%%.%[%]%*%+%-%?])", "\\%1")
+  escaped_text = escaped_text:gsub("\n", "\\n")
+  local cmd = ":%s/" .. escaped_text .. "//g"
+  vim.fn.feedkeys(vim.api.nvim_replace_termcodes(cmd, true, false, true), "n")
+  local cursor_position = #cmd - 3
+  -- vim.fn.setcmdpos(cursor_position)
+  vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Home>", true, false, true), "n")
+  vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Right>", true, false, true):rep(cursor_position), "n")
+end, { desc = '[R]eplace selection' })
+
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
