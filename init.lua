@@ -20,6 +20,81 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local function currentTaskyTask()
+  local status = require("tasky").status()
+
+  -- Remove Neovim formatting codes
+  -- This pattern matches and removes escape sequences like ^[[38;5;...m
+  local plain_text = status:gsub("%%#.-#", "") -- Remove highlight groups
+      :gsub("%%.-%%", "")                      -- Remove other formatting markers
+      :gsub("\27%[%d+;?%d*;?%d*m", "")         -- Remove ANSI color codes
+
+  return plain_text
+end
+
+local function tabnineStatus()
+  local statusText = require('tabnine.status').status()
+  -- remove "⌬ tabnine " prefix
+  local statusPart = statusText:sub(12)
+  -- trim whitespaces from statusPart
+  statusPart = statusPart:gsub('%s+', '')
+
+  if statusPart:match('pro') or statusPart:match('enterprise') or statusPart:match('dev') or statusPart:match('basic') then
+    return "󱜙"
+    -- return "%#DiagnosticOk#" .. "󱜙" .. "%*"
+  elseif statusPart:match('loading') then
+    return "󱜙"
+    -- return "%#DiagnosticWarn#" .. "󱜙" .. "%*"
+  elseif statusPart:match('disabled') then
+    return "󱜙"
+    -- return "%#DiagnosticError#" .. "󱜙" .. "%*"
+  end
+
+  return "󱜙 (" .. statusPart .. ")"
+end
+
+local function gitRepository()
+  local base_dir = vim.fn.system('git rev-parse --show-toplevel')
+  -- Remove trailing newline character
+  base_dir = base_dir:gsub('\n$', '')
+
+  if base_dir ~= "" then
+    return " " .. vim.fn.fnamemodify(base_dir, ':t')
+  end
+end
+
+local function gitBranch()
+  local branch = vim.fn.system('git branch --show-current')
+  -- Remove trailing newline character
+  branch = branch:gsub('\n$', '')
+
+  if branch ~= "" then
+    local ticket_project, ticket_number = branch:match("^([A-Z]+)-(%d+)")
+
+    if ticket_project and ticket_number then
+      return " " .. ticket_project .. "-" .. ticket_number .. "…"
+    else
+      return " " .. branch
+    end
+  end
+end
+
+local function thinkBlockTimer()
+  local m = require("timers.manager")
+
+  if vim.g.think_block_timer_id == nil then
+    return ""
+  end
+
+  local timer_list = m.timers()
+  if timer_list and timer_list[vim.g.think_block_timer_id] then
+    local expiry = timer_list[vim.g.think_block_timer_id]:expire_in():into_hms()
+    return "󰚭 " .. expiry
+  else
+    return ""
+  end
+end
+
 require('lazy').setup({
   -- Git related plugins
   'tpope/vim-fugitive',
@@ -90,8 +165,14 @@ require('lazy').setup({
         -- lualine_x = { 'encoding', 'fileformat', 'filetype' },
         -- lualine_y = { 'progress' },
         -- lualine_z = { 'location' }
-        lualine_x = { 'tabnine' },
-        lualine_y = { 'filetype' },
+        lualine_a = { 'mode', tabnineStatus },
+        lualine_b = { 'filename' },
+        lualine_c = { gitRepository, gitBranch, 'diff' },
+        lualine_x = {
+          { thinkBlockTimer,  color = { fg = "#555555", bg = "#79bad2", gui = 'bold' } },
+          { currentTaskyTask, color = { fg = "#555555", bg = "#d2d279", gui = 'bold' } },
+        },
+        lualine_y = {},
         lualine_z = { 'progress', 'location' }
       }
     },
