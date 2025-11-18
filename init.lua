@@ -238,8 +238,9 @@ vim.keymap.set('n', '<C-w>T', ':tabedit %<CR>', { desc = 'Break out into new tab
 vim.keymap.set('n', '<F5>', ':e<CR>', { desc = 'Reload Buffer' })
 vim.keymap.set('n', '<F6>', ':silent bufdo e<CR>', { desc = 'Reload All Buffers' })
 vim.keymap.set('n', '<C-p>', 'A<CR><ESC>p', { desc = '[P]aste after newline' })
-vim.keymap.set('n', '<leader>rr', ':set relativenumber!<CR>',
-  { desc = 'Toggle relative line numbers' })
+
+vim.keymap.set('n', '<leader>vr', ':set relativenumber!<CR>', { desc = 'Toggle [r]elative line numbers' })
+vim.keymap.set('n', '<leader>vc', ':TSContext toggle<CR>', { desc = 'Toggle [c]ontext' })
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`

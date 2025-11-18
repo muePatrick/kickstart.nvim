@@ -23,6 +23,7 @@ return {
       { "<leader>s", group = "[S]earch", icon = { icon = "", color = "yellow" } },
       { "<leader>t", group = "[T]est", icon = { icon = "", color = "yellow" } },
       { "<leader>w", group = "[W]orkspace", icon = { icon = "󰃥", color = "yellow" } },
+      { "<leader>v", group = "[V]iew options", icon = { icon = "", color = "yellow" } },
     })
     require("which-key").add({ -- icons in groups
       { "<leader>ac", icon = { icon = "󱜹", color = "yellow" } },
@@ -40,7 +41,7 @@ return {
       { "<leader>ra", icon = { icon = "", color = "yellow" } },
       { "<leader>rc", icon = { icon = "", color = "yellow" } },
       { "<leader>rs", icon = { icon = "", color = "yellow" } },
-      { "<leader>rr", icon = { icon = "", color = "yellow" } },
+      { "<leader>rn", icon = { icon = "", color = "yellow" } },
       { "<leader>ss", icon = { icon = "󱐋", color = "yellow" } },
       { "<leader>sc", icon = { icon = "󱣩", color = "yellow" } },
       { "<leader>sd", icon = { icon = "", color = "yellow" } },
@@ -58,6 +59,8 @@ return {
       { "<leader>ts", icon = { icon = "", color = "yellow" } },
       { "<leader>t<enter>", icon = { icon = "", color = "yellow" } },
       { "<leader>tt", icon = { icon = "", color = "yellow" } },
+      { "<leader>vr", icon = { icon = "󰉻", color = "yellow" }, desc = "Toggle [r]elative line numbers" },
+      { "<leader>vc", icon = { icon = "󰛼", color = "yellow" }, desc = "Toggle [c]ontext" },
     })
     require("which-key").add({ -- icons on top level (after leader)
       { "<leader>.", icon = { icon = "󰱺", color = "blue" } },
