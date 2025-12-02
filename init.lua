@@ -32,25 +32,18 @@ local function currentTaskyTask()
   return plain_text
 end
 
-local function tabnineStatus()
-  local statusText = require('tabnine.status').status()
-  -- remove "⌬ tabnine " prefix
-  local statusPart = statusText:sub(12)
-  -- trim whitespaces from statusPart
-  statusPart = statusPart:gsub('%s+', '')
-
-  if statusPart:match('pro') or statusPart:match('enterprise') or statusPart:match('dev') or statusPart:match('basic') then
-    return "󱜙"
-    -- return "%#DiagnosticOk#" .. "󱜙" .. "%*"
-  elseif statusPart:match('loading') then
+local function aiStatus()
+  if not vim.g.minuet_status then
+    return "󱜙"
+  elseif not vim.g.minuet_status.name then
+    return "󱜙"
+  elseif vim.g.minuet_status.processing then
     return "󱜙"
-    -- return "%#DiagnosticWarn#" .. "󱜙" .. "%*"
-  elseif statusPart:match('disabled') then
-    return "󱜙"
-    -- return "%#DiagnosticError#" .. "󱜙" .. "%*"
+  elseif not vim.g.minuet_status.processing then
+    return "󱜙"
   end
 
-  return "󱜙 (" .. statusPart .. ")"
+  return "󱜙"
 end
 
 local function gitRepository()
@@ -165,9 +158,14 @@ require('lazy').setup({
         -- lualine_x = { 'encoding', 'fileformat', 'filetype' },
         -- lualine_y = { 'progress' },
         -- lualine_z = { 'location' }
-        lualine_a = { 'mode', tabnineStatus },
+        -- Left side
+        lualine_a = {
+          'mode',
+          aiStatus,
+        },
         lualine_b = { 'filename' },
         lualine_c = { gitRepository, gitBranch, 'diff' },
+        -- Right side
         lualine_x = {
           { thinkBlockTimer,  color = { fg = "#555555", bg = "#79bad2", gui = 'bold' } },
           { currentTaskyTask, color = { fg = "#555555", bg = "#d2d279", gui = 'bold' } },

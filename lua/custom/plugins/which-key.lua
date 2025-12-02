@@ -28,7 +28,6 @@ return {
       { "<leader>i", group = "[I]nternationalization", icon = { icon = "", color = "yellow" } },
     })
     require("which-key").add({ -- icons in groups
-      { "<leader>ac", icon = { icon = "󱜹", color = "yellow" } },
       { "<leader>fw", icon = { icon = "", color = "yellow" } },
       { "<leader>fr", icon = { icon = "󰑕", color = "yellow" } },
       { "<leader>fi", icon = { icon = "󰒺", color = "yellow" } },
