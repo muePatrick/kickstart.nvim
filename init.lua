@@ -747,6 +747,9 @@ local mason_lspconfig = require 'mason-lspconfig'
 
 mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
+  automatic_enable = {
+    "vtsls",
+  }
 }
 
 -- FIXME this is broken since the new major mason version. removing it fixes the
@@ -814,6 +817,8 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+require('custom.functions.go-endpoints')
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
