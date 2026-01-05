@@ -7,6 +7,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "nvim-neotest/neotest-go",
       "nvim-neotest/nvim-nio",
+      "marilari88/neotest-vitest",
     },
     config = function()
       require("neotest").setup({
@@ -17,7 +18,15 @@ return {
               test_table = true,
             },
             args = { "-count=1", "-timeout=60s" }
-          })
+          }),
+          require("neotest-vitest")({
+            filter_dir = function(name, rel_path, root)
+              return name ~= "node_modules"
+            end,
+          }),
+        },
+        summary = {
+          open = "botright vsplit | vertical resize 75"
         },
       })
       vim.keymap.set('n', '<leader>t<enter>', require("neotest").run.run, { desc = '[T]est Run (nearest)' })
