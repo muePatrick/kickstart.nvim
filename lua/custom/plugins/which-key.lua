@@ -26,6 +26,7 @@ return {
       { "<leader>x", group = "Todos", icon = { icon = "", color = "yellow" } },
       { "<leader>v", group = "[V]iew options", icon = { icon = "", color = "yellow" } },
       { "<leader>i", group = "[I]nternationalization", icon = { icon = "", color = "yellow" } },
+      { "<leader>c", group = "[C]onsole", icon = { icon = "󰆍", color = "yellow" } },
     })
     require("which-key").add({ -- icons in groups
       { "<leader>fw", icon = { icon = "", color = "yellow" } },
@@ -72,6 +73,8 @@ return {
       { "<leader>in", icon = { icon = "󰵵", color = "yellow" }, desc = "[N]ext locale" },
       { "<leader>it", icon = { icon = "󰫌", color = "yellow" }, desc = "[T]oggle overlay" },
       { "<leader>ia", icon = { icon = "", color = "yellow" }, desc = "[A]dd key" },
+      { "<leader>cl", icon = { icon = "󰱺", color = "yellow" } },
+      { "<leader>cu", icon = { icon = "", color = "yellow" } },
     })
     require("which-key").add({ -- icons on top level (after leader)
       { "<leader>.", icon = { icon = "󰱺", color = "blue" } },
