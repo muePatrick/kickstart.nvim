@@ -20,74 +20,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local function currentTaskyTask()
-  local status = require("tasky").status()
-
-  -- Remove Neovim formatting codes
-  -- This pattern matches and removes escape sequences like ^[[38;5;...m
-  local plain_text = status:gsub("%%#.-#", "") -- Remove highlight groups
-      :gsub("%%.-%%", "")                      -- Remove other formatting markers
-      :gsub("\27%[%d+;?%d*;?%d*m", "")         -- Remove ANSI color codes
-
-  return plain_text
-end
-
-local function aiStatus()
-  if not vim.g.minuet_status then
-    return "󱜙"
-  elseif not vim.g.minuet_status.name then
-    return "󱜙"
-  elseif vim.g.minuet_status.processing then
-    return "󱜙"
-  elseif not vim.g.minuet_status.processing then
-    return "󱜙"
-  end
-
-  return "󱜙"
-end
-
-local function gitRepository()
-  local base_dir = vim.fn.system('git rev-parse --show-toplevel')
-  -- Remove trailing newline character
-  base_dir = base_dir:gsub('\n$', '')
-
-  if base_dir ~= "" then
-    return " " .. vim.fn.fnamemodify(base_dir, ':t')
-  end
-end
-
-local function gitBranch()
-  local branch = vim.fn.system('git branch --show-current')
-  -- Remove trailing newline character
-  branch = branch:gsub('\n$', '')
-
-  if branch ~= "" then
-    local ticket_project, ticket_number = branch:match("^([A-Z]+)-(%d+)")
-
-    if ticket_project and ticket_number then
-      return " " .. ticket_project .. "-" .. ticket_number .. "…"
-    else
-      return " " .. branch
-    end
-  end
-end
-
-local function thinkBlockTimer()
-  local m = require("timers.manager")
-
-  if vim.g.think_block_timer_id == nil then
-    return ""
-  end
-
-  local timer_list = m.timers()
-  if timer_list and timer_list[vim.g.think_block_timer_id] then
-    local expiry = timer_list[vim.g.think_block_timer_id]:expire_in():into_hms()
-    return "󰚭 " .. expiry
-  else
-    return ""
-  end
-end
-
 require('lazy').setup({
   -- Git related plugins
   'tpope/vim-fugitive',
@@ -161,14 +93,18 @@ require('lazy').setup({
         -- Left side
         lualine_a = {
           'mode',
-          aiStatus,
+          require('custom.functions.lualine-widgets').aiStatus,
         },
         lualine_b = { 'filename' },
-        lualine_c = { gitRepository, gitBranch, 'diff' },
+        lualine_c = {
+          require('custom.functions.lualine-widgets').gitRepository,
+          require('custom.functions.lualine-widgets').gitBranch,
+          'diff',
+        },
         -- Right side
         lualine_x = {
-          { thinkBlockTimer,  color = { fg = "#555555", bg = "#79bad2", gui = 'bold' } },
-          { currentTaskyTask, color = { fg = "#555555", bg = "#d2d279", gui = 'bold' } },
+          { require('custom.functions.lualine-widgets').thinkBlockTimer,  color = { fg = "#555555", bg = "#79bad2", gui = 'bold' } },
+          { require('custom.functions.lualine-widgets').currentTaskyTask, color = { fg = "#555555", bg = "#d2d279", gui = 'bold' } },
         },
         lualine_y = {},
         lualine_z = { 'progress', 'location' }
@@ -232,58 +168,8 @@ require('lazy').setup({
   { import = 'custom.themes' },
 }, {})
 
--- [[ Setting options ]]
--- See `:help vim.o`
-
--- Set highlight on search
-vim.o.hlsearch = false
-
--- Make line numbers default
-vim.wo.number = true
-vim.wo.relativenumber = true
-vim.wo.cursorline = true
-vim.wo.cursorcolumn = true
-vim.opt.colorcolumn = "80,100"
-
-vim.o.scrolloff = 5
-
--- Enable mouse mode
-vim.o.mouse = 'a'
-
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
-
--- Enable break indent
-vim.o.breakindent = true
-
--- Save undo history
-vim.o.undofile = true
-
--- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
--- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
-
--- Decrease update time
-vim.o.updatetime = 250
-vim.o.timeout = true
-vim.o.timeoutlen = 300
-
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
-
--- NOTE: You should make sure your terminal supports this
-vim.o.termguicolors = true
-
-vim.o.spell = true
-vim.o.spelllang = 'en_us,de_20'
-
-vim.diagnostic.config({ virtual_lines = false }) -- shows diagnostics grayed out at the end of the line
-vim.diagnostic.config({ virtual_text = true })   -- shows diagnostics in the line below
+-- [[ Basic Vim Config ]]
+require('custom.functions.vim-config')
 
 -- [[ Basic Keymaps ]]
 
