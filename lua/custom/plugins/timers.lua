@@ -14,12 +14,12 @@ return {
 
         local timer_obj = t.new(d.from(30 * 60 * 1000), {
           title = "Think Block 󰧑 ",
-          message = "The current Think Block is over! Give that brain a rest.",
+          message = "Take some time to work with full concentration.",
           icon = "󰧑",
           on_finish = function()
             vim.schedule(function()
               require("snacks").notifier.notify(
-                "The current Think Block is over!",
+                "The current Think Block is over! Give that brain a rest.",
                 "info",
                 { style = "compact", timeout = 3000, title = "Think Block 󰧑 " }
               )

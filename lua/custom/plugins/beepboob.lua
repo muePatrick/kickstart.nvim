@@ -8,6 +8,7 @@ return {
         { auto_command = "BufWritePost",                                        sound = "notification.mp3" },
         { key_map = { mode = "n", key_chord = "q", blocking = false },          sound = "success.mp3" },
         { key_map = { mode = "n", key_chord = "<leader>xd", blocking = false }, sound = "chime.mp3" },
+        { trigger_name = "pressure_timer",                                      sound = "pressure.mp3" },
       }
     }
   }

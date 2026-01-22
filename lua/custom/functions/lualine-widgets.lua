@@ -56,6 +56,22 @@ function M.thinkBlockTimer()
   end
 end
 
+function M.pressureTimer()
+  m = require("timers.manager")
+
+  if vim.g.pressure_timer_id == nil then
+    return ""
+  end
+
+  timer_list = m.timers()
+  if timer_list and timer_list[vim.g.pressure_timer_id] then
+    expiry = timer_list[vim.g.pressure_timer_id]:expire_in():into_hms()
+    return "󱅝 " .. expiry
+  else
+    return ""
+  end
+end
+
 function M.currentTaskyTask()
   status = require("tasky").status()
 

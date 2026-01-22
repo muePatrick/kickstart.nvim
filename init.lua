@@ -104,6 +104,7 @@ require('lazy').setup({
         -- Right side
         lualine_x = {
           { require('custom.functions.lualine-widgets').thinkBlockTimer,  color = { fg = "#555555", bg = "#79bad2", gui = 'bold' } },
+          { require('custom.functions.lualine-widgets').pressureTimer,    color = { fg = "#555555", bg = "#d2d279", gui = 'bold' } },
           { require('custom.functions.lualine-widgets').currentTaskyTask, color = { fg = "#555555", bg = "#d2d279", gui = 'bold' } },
         },
         lualine_y = {},

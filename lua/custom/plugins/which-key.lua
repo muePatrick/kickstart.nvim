@@ -68,6 +68,8 @@ return {
       { "<leader>x<S-c>", icon = { icon = "󱘜", color = "yellow" }, desc = "[C]lear todos" },
       { "<leader>xt", icon = { icon = "󰧑", color = "yellow" } },
       { "<leader>x<S-t>", icon = { icon = "󰧑", color = "yellow" } },
+      { "<leader>xp", icon = { icon = "󱅝", color = "yellow" } },
+      { "<leader>x<S-p>", icon = { icon = "󱅝", color = "yellow" } },
       { "<leader>vr", icon = { icon = "󰉻", color = "yellow" }, desc = "Toggle [r]elative line numbers" },
       { "<leader>vc", icon = { icon = "󰛼", color = "yellow" }, desc = "Toggle [c]ontext" },
       { "<leader>in", icon = { icon = "󰵵", color = "yellow" }, desc = "[N]ext locale" },
