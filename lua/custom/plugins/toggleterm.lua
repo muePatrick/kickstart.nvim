@@ -55,18 +55,15 @@ return {
         }
       })
 
-      local git_terminal = Terminal:new({
-        cmd = "git commit",
-        display_name = " Git Commit",
-        direction = "float",
-        close_on_exit = true,
+      local opencode_terminal = Terminal:new({
+        cmd = "opencode",
+        display_name = "󰚩 OpenCode",
+        direction = "vertical",
+        on_open = function(term)
+          vim.cmd("vertical resize " .. math.floor(vim.o.columns * 0.4))
+        end,
+        close_on_exit = false,
         hidden = true,
-        float_opts = {
-          border = "curved",
-          width = math.floor(vim.o.columns * 0.8),
-          height = math.floor(vim.o.lines * 0.8),
-          title_pos = 'center',
-        }
       })
 
       vim.keymap.set('n', '<leader>cl', function()
@@ -81,9 +78,9 @@ return {
         terminal:toggle()
       end, { desc = '[C]onsole [C]console' })
 
-      vim.keymap.set('n', '<leader>gC', function()
-        git_terminal:toggle()
-      end, { desc = '[G]it [C]ommit' })
+      vim.keymap.set('n', '<leader>cv', function()
+        opencode_terminal:toggle()
+      end, { desc = '[V]ibe Coding' })
     end
   }
 }
