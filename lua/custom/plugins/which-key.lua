@@ -71,6 +71,7 @@ return {
       { "<leader>xp", icon = { icon = "󱅝", color = "yellow" } },
       { "<leader>x<S-p>", icon = { icon = "󱅝", color = "yellow" } },
       { "<leader>vr", icon = { icon = "󰉻", color = "yellow" }, desc = "Toggle [r]elative line numbers" },
+      { "<leader>vw", icon = { icon = "", color = "yellow" }, desc = "Toggle [w]hite space indicators" },
       { "<leader>vc", icon = { icon = "󰛼", color = "yellow" }, desc = "Toggle [c]ontext" },
       { "<leader>in", icon = { icon = "󰵵", color = "yellow" }, desc = "[N]ext locale" },
       { "<leader>it", icon = { icon = "󰫌", color = "yellow" }, desc = "[T]oggle overlay" },

@@ -206,6 +206,7 @@ vim.keymap.set('n', '<F6>', ':silent bufdo e<CR>', { desc = 'Reload All Buffers'
 vim.keymap.set('n', '<C-p>', 'A<CR><ESC>p', { desc = '[P]aste after newline' })
 
 vim.keymap.set('n', '<leader>vr', ':set relativenumber!<CR>', { desc = 'Toggle [r]elative line numbers' })
+vim.keymap.set('n', '<leader>vw', ':set list!<CR>', { desc = 'Toggle [w]hite space indicators' })
 vim.keymap.set('n', '<leader>vc', ':TSContext toggle<CR>', { desc = 'Toggle [c]ontext' })
 
 -- [[ Configure Telescope ]]
