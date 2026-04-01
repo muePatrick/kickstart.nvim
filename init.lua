@@ -262,14 +262,15 @@ vim.keymap.set('n', '<leader>sy',
   end, { desc = '[S]earch S[y]mbols' })
 
 
+vim.keymap.set('n', '<leader>gn', ':Gitsigns next_hunk<CR>', { desc = '[G]it [N]ext Hunk' })
+vim.keymap.set('n', '<leader>gp', ':Gitsigns prev_hunk<CR>', { desc = '[G]it [P]revious Hunk' })
 vim.keymap.set('n', '<leader>ga', ':Gitsigns stage_hunk<CR>', { desc = '[G]it [A]dd' })
 vim.keymap.set('v', '<leader>ga', ':Gitsigns stage_hunk<CR>', { desc = '[G]it [A]dd' })
 vim.keymap.set('v', '<leader>gd', ':Gitsigns reset_hunk<CR>', { desc = '[G]it [D]iscard' })
 vim.keymap.set('n', '<leader>gs', require('telescope.builtin').git_status, { desc = '[G]it [S]tatus' })
-vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_commits, { desc = '[G]it [C]ommits' })
+vim.keymap.set('n', '<leader>gc', ':DiffviewFileHistory<CR>', { desc = '[G]it [C]ommits' })
 vim.keymap.set('n', '<leader>gb', ':Gitsigns blame<CR>', { desc = '[G]it [b]lame' })
 vim.keymap.set('n', '<leader>gB', require('telescope.builtin').git_branches, { desc = '[G]it [B]ranches' })
--- vim.keymap.set('n', '<leader>go', ':GBrowse<CR>', { desc = '[G]it [O]pen in browser' })
 vim.keymap.set('n', '<leader>go',
   function()
     local command = vim.fn.join({ vim.fn.line('.'), "GBrowse" }, '')

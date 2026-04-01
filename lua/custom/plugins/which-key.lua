@@ -36,7 +36,7 @@ return {
       { "<leader>gB", icon = { icon = "", color = "yellow" } },
       { "<leader>gc", icon = { icon = "", color = "yellow" } },
       { "<leader>gd", icon = { icon = "", color = "yellow" } },
-      { "<leader>gD", icon = { icon = "", color = "yellow" } },
+      { "<leader>gm", icon = { icon = "", color = "yellow" } },
       { "<leader>gs", icon = { icon = "", color = "yellow" } },
       { "<leader>gt", icon = { icon = "", color = "yellow" } },
       { "<leader>go", icon = { icon = "", color = "yellow" } },
@@ -90,6 +90,8 @@ return {
       { "<leader>q", icon = { icon = "󰺲", color = "blue" } },
       { "<leader>e", icon = { icon = "", color = "blue" } },
       { "<leader>R", icon = { icon = "󰊪", color = "blue" } },
+      { "<C-PageUp>", desc = "Previous tab" },
+      { "<C-PageDown>", desc = "Next tab" },
     })
     require("which-key").add({ -- goto icons
       { "gd", icon = { icon = "󱍢", color = "purple" } },
