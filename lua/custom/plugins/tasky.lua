@@ -19,13 +19,13 @@ return {
         local minutes = plain_text:match("%((%d+)%)")
 
         if not minutes then
-          vim.schedule(function()
-            require("snacks").notifier.notify(
-              "No time estimate found in current todo",
-              "warn",
-              { style = "compact", timeout = 3000, title = "Pressure Timer 󱅝 " }
-            )
-          end)
+          -- vim.schedule(function()
+          --   require("snacks").notifier.notify(
+          --     "No time estimate found in current todo",
+          --     "warn",
+          --     { style = "compact", timeout = 3000, title = "Pressure Timer 󱅝 " }
+          --   )
+          -- end)
           return
         end
 
