@@ -197,6 +197,16 @@ vim.keymap.set('n', '<leader>p', ':Explore<CR>', { desc = 'Open Explorer' })
 -- moving this into the plugin file breaks the plugin
 vim.keymap.set('n', '<leader>st', ':TodoTelescope keywords=TODO,FIXME,BUG<CR>', { desc = '[S]earch [T]odo' })
 vim.keymap.set('n', '<leader>sr', ':TodoTelescope keywords=RR,R:<CR>', { desc = '[S]earch [R]esearch' })
+vim.keymap.set("n", "<leader>sR", function()
+  vim.ui.input({ prompt = "Label name: " }, function(input)
+    if not input or input == "" then
+      return
+    end
+    local row = vim.api.nvim_win_get_cursor(0)[1]
+    vim.api.nvim_buf_set_lines(0, row, row, false, { "// RR " .. input })
+    vim.api.nvim_win_set_cursor(0, { row + 1, 0 })
+  end)
+end, { desc = '[S]earch [R]esearch: New Label' })
 
 vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save File' })
 vim.keymap.set('n', '<C-w><S-c>', ':bd<CR>', { desc = 'Close Buffer And Pane' })
