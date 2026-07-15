@@ -49,5 +49,5 @@ vim.o.termguicolors = true
 vim.o.spell = true
 vim.o.spelllang = 'en_us,de_20'
 
-vim.diagnostic.config({ virtual_lines = false }) -- shows diagnostics grayed out at the end of the line
-vim.diagnostic.config({ virtual_text = true })   -- shows diagnostics in the line below
+vim.diagnostic.config({ virtual_lines = true }) -- shows diagnostics grayed out at the end of the line
+vim.diagnostic.config({ virtual_text = false }) -- shows diagnostics in the line below

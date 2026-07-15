@@ -218,6 +218,14 @@ vim.keymap.set('n', '<C-p>', 'A<CR><ESC>p', { desc = '[P]aste after newline' })
 vim.keymap.set('n', '<leader>vr', ':set relativenumber!<CR>', { desc = 'Toggle [r]elative line numbers' })
 vim.keymap.set('n', '<leader>vw', ':set list!<CR>', { desc = 'Toggle [w]hite space indicators' })
 vim.keymap.set('n', '<leader>vc', ':TSContext toggle<CR>', { desc = 'Toggle [c]ontext' })
+vim.keymap.set('n', '<leader>vd', function()
+  local use_virtual_lines = not vim.diagnostic.config().virtual_lines
+
+  vim.diagnostic.config({
+    virtual_lines = use_virtual_lines,
+    virtual_text = not use_virtual_lines,
+  })
+end, { desc = 'Toggle diagnostic [v]irtual lines/text' })
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
