@@ -46,6 +46,73 @@ return {
         end,
         { desc = '[G]it [D]iff View Toggle' }
       )
+
+      -- from here is the logic to mark seen files in diffview
+      local review_state = {}
+
+      local marks = {
+        ["seen"]          = { "󰄭", "Search" },
+        ["recheck"]       = { "󰍉", "CurSearch" },
+        ["ask-team"]      = { "", "Substitute" },
+        ["more-comments"] = { "", "Substitute" },
+      }
+
+      local function file_under_cursor()
+        local view = require("diffview.lib").get_current_view()
+        if not view or not view.panel then return end
+        local item = view.panel:get_item_at_cursor()
+        if item and item.path then return item end
+      end
+
+      local ns = vim.api.nvim_create_namespace("diffview_review_marks")
+      vim.api.nvim_set_decoration_provider(ns, {
+        on_win = function(_, _, bufnr)
+          return vim.bo[bufnr].filetype == "DiffviewFiles"
+        end,
+        on_line = function(_, _, bufnr, row)
+          local line = vim.api.nvim_buf_get_lines(bufnr, row, row + 1, false)[1]
+          if not line then return end
+          for path, state in pairs(review_state) do
+            local name = vim.fn.fnamemodify(path, ":t")
+            if line:find(name, 1, true) and marks[state] then
+              vim.api.nvim_buf_set_extmark(bufnr, ns, row, 0, {
+                virt_text = { { marks[state][1], marks[state][2] } },
+                virt_text_pos = "overlay",
+                ephemeral = true,
+              })
+              break
+            end
+          end
+        end,
+      })
+
+      local state_order = { "seen", "recheck", "ask-team", "more-comments" }
+
+      local function next_state(current)
+        if current == nil then return state_order[1] end
+        for i, s in ipairs(state_order) do
+          if s == current then
+            return state_order[i + 1] -- nil after last -> unset
+          end
+        end
+        return state_order[1] -- unknown state, restart cycle
+      end
+
+      local function cycle_mark()
+        local file = file_under_cursor()
+        if not file then return end
+        review_state[file.path] = next_state(review_state[file.path])
+        -- persist to your state file here
+        vim.cmd("redraw!")
+      end
+
+      require("diffview").setup({
+        keymaps = {
+          file_panel = {
+            { "n", "m", cycle_mark, { desc = "Cycle review mark" } },
+          },
+        },
+      })
     end,
   }
 }
