@@ -165,6 +165,29 @@ require('lazy').setup({
     end,
   },
 
+  {
+    dir = "~/Documents/private/github-pr.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("github-pr").setup()
+    end,
+    opts = {
+      signs = {
+        text = "",
+      }
+    },
+    keys = {
+      { "<leader>gra", function() require("github-pr").comment() end,        desc = "PR: add comment" },
+      { "<leader>grs", function() require("github-pr").suggest() end,        mode = "v",                         desc = "PR: suggest" },
+      { "<leader>grl", function() require("github-pr").list() end,           desc = "PR: list comments" },
+      { "<leader>grb", function() require("github-pr").panel() end,          desc = "PR: toggle panel" },
+      { "<leader>gre", function() require("github-pr").edit_at_cursor() end, desc = "PR: edit comment at cursor" },
+      { "<leader>grc", function() require("github-pr").submit() end,         desc = "PR: submit review" },
+      { "<leader>grn", function() require("github-pr").next() end,           desc = "PR: next comment" },
+      { "<leader>grp", function() require("github-pr").prev() end,           desc = "PR: prev comment" },
+    },
+  },
+
   { import = 'custom.plugins' },
   { import = 'custom.themes' },
 }, {})
