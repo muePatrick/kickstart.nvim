@@ -156,6 +156,8 @@ require('lazy').setup({
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    branch = "main",
+    main = 'nvim-treesitter.config',
     build = ":TSUpdate",
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
@@ -163,6 +165,13 @@ require('lazy').setup({
     config = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
+  },
+
+  {
+    -- Highlight, edit, and navigate code
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    branch = "main",
+    main = 'nvim-treesitter.config',
   },
 
   {
@@ -352,7 +361,7 @@ end, { desc = '[R]eplace selection' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
-require('nvim-treesitter.configs').setup {
+require('nvim-treesitter.config').setup {
   modules = {},         -- TODO had to be set after update, find proper setting
   sync_install = false, -- TODO had to be set after update, find proper setting
   ignore_install = {},  -- TODO had to be set after update, find proper setting
